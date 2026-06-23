@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>System Access</title>
+<style>
+body {
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  overflow: hidden;
+}
+#screen {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+</style>
+</head>
+<body>
+
+<pre id="screen"></pre>
+
+<script>
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+=-{}[]<>?/|\\~";
+
+const screen = document.getElementById("screen");
+
+function randomText(len) {
+  let text = "";
+  for (let i = 0; i < len; i++) {
+    text += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return text;
+}
+
+setInterval(() => {
+  screen.textContent += randomText(120) + "\n";
+  
+  // keep it from going infinite
+  if (screen.textContent.length > 3000) {
+    screen.textContent = screen.textContent.slice(-3000);
+  }
+}, 60);
+</script>
+
+</body>
+</html>
